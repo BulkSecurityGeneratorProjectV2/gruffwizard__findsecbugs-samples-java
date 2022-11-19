@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 
 public class PathTraversal {
     static final String safefinalString = "SAFE";
@@ -32,9 +33,9 @@ public class PathTraversal {
         new FileWriter("safe".toUpperCase());
         new File(new URI("safe"));
 
-        File.createTempFile(input, "safe");
-        File.createTempFile("safe", input);
-        File.createTempFile("safe", input, new File("safeDir"));
+        Files.createTempFile(input,"safe").toFile();
+        Files.createTempFile("safe",input).toFile();
+        Files.createTempFile(new File("safeDir").toPath(),"safe",input).toFile();
         new File(safefinalString);
     }
 }
